@@ -40,37 +40,39 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- belongs_to :order
+- has_many :order
 
 
 ## items テーブル
 
-| Column       | type       | option            |
-| ------------ | ---------- | ----------------- |
-| items_name   | string     | null: false       |
-| explanation  | text       | null: false       |
-| category     | string     | null: false       |
-| status       | integer    | null: false       |
-| fee_burden   | integer    | null: false       |
-| source_area  | integer    | null: false       |
-| day_required | integer    | null: false       |
-| price        | integer    | null: false       |
-| user_id      | references | foreign_key: true |
+| Column          | type       | option            |
+| --------------- | ---------- | ----------------- |
+| name            | string     | null: false       |
+| explanation     | text       | null: false       |
+| category_id     | integer    | null: false       |
+| status_id       | integer    | null: false       |
+| fee_burden_id   | integer    | null: false       |
+| prefecture_id   | integer    | null: false       |
+| day_required_id | integer    | null: false       |
+| price           | integer    | null: false       |
+| user            | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
+- has_one :order
 
 
 ##  orders テーブル
 
-| Column  | type       | option            |
-| ------- | ---------- | ----------------- |
-| user_id | references | foreign_key: true |
-| item_id | references | foreign_key: true |
+| Column | type       | option            |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
 ### Association
 - has_many :users
 - has_one :address
+- belongs_to :item
 
 ## addresses テーブル
 
@@ -82,7 +84,7 @@ Things you may want to cover:
 | address       | string     | null: false       |
 | building_name | string     |                   |
 | phone_number  | string     | null: false       |
-| order_id      | references | foreign_key: true |
+| order         | references | foreign_key: true |
 
 ### Association
 - belongs_to :order
