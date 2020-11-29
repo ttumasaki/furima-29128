@@ -27,16 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | type    | option      |
-| ------------------ | ------- | ----------- |
-| nickname           | string  | null: false |
-| email              | strinag | null: false |
-| encrypted_password | string  | null: false |
-| last_name          | string  | null: false |
-| last_name_kana     | string  | null: false |
-| first_name         | string  | null: false |
-| first_name_kana    | string  | null: false |
-| birthday           | date    | null: false |
+| Column             | type   | option      |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name         | string | null: false |
+| first_name_kana    | string | null: false |
+| birthday           | date   | null: false |
 
 ### Association
 - has_many :items
@@ -70,21 +70,21 @@ Things you may want to cover:
 | item   | references | foreign_key: true |
 
 ### Association
-- has_many :users
+- belongs_to :user
 - has_one :address
 - belongs_to :item
 
 ## addresses テーブル
 
-| Column        | type       | option            |
-| ------------- | ---------- | ----------------- |
-| postal_code   | string     | null: false       |
-| prefecture    | integer    | null: false       |
-| city          | string     | null: false       |
-| address       | string     | null: false       |
-| building_name | string     |                   |
-| phone_number  | string     | null: false       |
-| order         | references | foreign_key: true |
+| Column           | type       | option            |
+| ---------------- | ---------- | ----------------- |
+| postal_code      | string     | null: false       |
+| prefecture_id    | integer    | null: false       |
+| city             | string     | null: false       |
+| address          | string     | null: false       |
+| building_name    | string     |                   |
+| phone_number     | string     | null: false       |
+| order            | references | foreign_key: true |
 
 ### Association
 - belongs_to :order
