@@ -20,7 +20,8 @@ class ItemsController < ApplicationController
                                  :prefecture_id,
                                  :day_required_id,
                                  :price,
-                                 :user)
+                                 :user
+                                 :image)
   end
 
   def move_to_sign_in
