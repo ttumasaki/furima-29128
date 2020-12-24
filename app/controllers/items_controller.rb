@@ -1,15 +1,15 @@
 class ItemsController < ApplicationController
-  before_action :items_params,except:[:index]
+  before_action :items_params,except:[:index, :new]
 
   def index
   end
 
   def new
+    @item = Item.new
   end
 
   private
   def items_params
-    binding.pry
     params.require(:item).permit(:name,
                                  :explanation,
                                  :category_id,
