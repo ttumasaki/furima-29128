@@ -10,6 +10,10 @@ class ItemsController < ApplicationController
 
   end
 
+  def create
+    
+  end
+
   private
   def items_params
     params.require(:item).permit(:name,
