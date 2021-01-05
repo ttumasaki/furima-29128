@@ -3,6 +3,15 @@ class Item < ApplicationRecord
   has_one :order
   has_one_attached :image
 
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :explanation
+    validates :price, :numericality => { :greater_than => 299,
+                                        :less_than => 10000000},
+                      format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+  end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   validates :title, :text, :category, presence: true
