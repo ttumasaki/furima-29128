@@ -11,7 +11,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
+    @item = Item.new(items_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
@@ -24,8 +29,8 @@ class ItemsController < ApplicationController
                                  :prefecture_id,
                                  :day_required_id,
                                  :price,
-                                 :user,
                                  :image)
+                          .merge(user_id: current_user.id)
   end
 
   def move_to_sign_in
