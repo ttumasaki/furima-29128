@@ -2,12 +2,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  with_options  presence: true do
+  with_options presence: true do
     validates :nickname
     validates :email, uniqueness: true
-    validates :password,length: { minimum: 6 },
-                        confirmation: true,
-                        format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+    validates :password, length: { minimum: 6 },
+                         confirmation: true,
+                         format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
     validates :password_confirmation
     validates :birthday
 
