@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: :create
 
   def index
+    @item = Item.all
   end
 
   def new
