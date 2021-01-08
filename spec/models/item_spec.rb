@@ -58,15 +58,45 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
-      it '価格ぼ範囲が10000000以上だと登録できない' do
+      it '価格が範囲が10000000以上だと登録できない' do
         @item.price = 20_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
-      it '販売価格は半角数字ではないと登録できない' do
+      it '販売価格は全角数字では登録できない' do
         @item.price = '３００'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it '販売価格は英字では登録できない' do
+        @item.price = 'eight hundled'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'カテゴリーのアクティブハッシュが1の場合は登録できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
+      end
+      it '商品の状態のアクティブハッシュが1の場合は登録できない' do
+        @item.status_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
+      end
+      it '配送料の負担のアクティブハッシュが1の場合は登録できない' do
+        @item.fee_burden_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Fee burden must be other than 1')
+      end
+      it '発送元の地域のアクティブハッシュが1の場合は登録できない' do
+        @item.prefecture_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
+      end
+      it '発送までの日数のアクティブハッシュが1の場合は登録できない' do
+        @item.day_required_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Day required must be other than 1')
       end
     end
   end
