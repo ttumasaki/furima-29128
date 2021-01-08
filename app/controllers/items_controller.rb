@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :items_params, except: [:index, :new]
   before_action :move_to_sign_in, only: [:new]
+  before_action :set_item, only: :create
 
   def index
   end
@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(items_params)
     if @item.save
       redirect_to root_path
     else
@@ -35,5 +34,9 @@ class ItemsController < ApplicationController
 
   def move_to_sign_in
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def set_item
+    @item = Item.new(items_params)
   end
 end
