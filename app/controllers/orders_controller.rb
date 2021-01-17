@@ -21,5 +21,6 @@ class OrdersController < ApplicationController
     params.require(:order_address).permit(:card_number, :exp_month, :exp_year, :cvc,
                                          :postal_code, :prefecture_id, :city,
                                          :address, :building_name, :phone_number)
+                                  .merge(user_id: current_user.id, item_id: @item.id)
   end
 end
