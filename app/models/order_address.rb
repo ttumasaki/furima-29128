@@ -4,10 +4,7 @@ class OrderAddress
                 :address, :building_name, :phone_number
 
   with_options presence: true do
-    validates :card_number,   format: { with: /\d{14,16}/, message: "is invalid.Input half-width number"}
-    validates :exp_month,     format: { with: /\d{1,2}/, message: "is invalid.Input half-width number"}
-    validates :exp_year,      format: { with: /\d{2,}/, message: "is invalid.Input half-width number"}
-    validates :cvc,           format: { with: /\d{3,4}/, message: "is invalid.Input half-width number"}
+    validates :postal_code,   format: { with: /\d{3}[-]\d{4}/, message: "is invalid.Input half-width number and hyphen"}
     validates :prefecture_id
     validates :city,          format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid.Input full-width charaset"}
     validates :address
