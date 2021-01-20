@@ -36,22 +36,22 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
     end
     it '郵便番号にはハイフンがないと保存できない' do
-      @order_address.postal_code = "4440000"
+      @order_address.postal_code = '4440000'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Postal code is invalid.Input half-width number and hyphen")
+      expect(@order_address.errors.full_messages).to include('Postal code is invalid.Input half-width number and hyphen')
     end
     it '電話番号にはハイフンが入力されていると保存できない' do
-      @order_address.phone_number = "080-0000-0000"
+      @order_address.phone_number = '080-0000-0000'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Phone number is invalid.Input half-width number")
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid.Input half-width number')
     end
     it '電話番号が12桁以上だと保存できない' do
-      @order_address.phone_number = "0000000000000000"
+      @order_address.phone_number = '0000000000000000'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Phone number is invalid.Input half-width number")
+      expect(@order_address.errors.full_messages).to include('Phone number is invalid.Input half-width number')
     end
     it 'tokenが送信されないと保存できない' do
-      @order_address.token = ""
+      @order_address.token = ''
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Token can't be blank")
     end
