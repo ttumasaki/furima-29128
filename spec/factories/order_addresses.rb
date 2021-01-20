@@ -6,5 +6,6 @@ FactoryBot.define do
     address {Faker::Address.zip}
     building_name {"テストビル１階"}
     phone_number {Faker::Number.number(digits: 11)}
+    token {Faker::String.random}
   end
 end
