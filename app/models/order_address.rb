@@ -1,7 +1,7 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :card_number, :exp_month, :exp_year, :cvc, :postal_code, :prefecture_id, :city,
-                :address, :building_name, :phone_number
+                :address, :building_name, :phone_number, :token
 
   with_options presence: true do
     validates :postal_code,   format: { with: /\d{3}[-]\d{4}/, message: "is invalid.Input half-width number and hyphen"}
@@ -9,6 +9,7 @@ class OrderAddress
     validates :city,          format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid.Input full-width charaset"}
     validates :address
     validates :phone_number,  format: { with: /\A\d{,11}\z/, message: "is invalid.Input half-width number"}
+    validates :token
   end
   
   def save
