@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: [:new]
+  before_action :authenticate_user!, only: [:new,:edit]
   before_action :set_item, only: [:create]
   before_action :find_params, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit]
+
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -61,10 +61,6 @@ class ItemsController < ApplicationController
                                  :price,
                                  :image)
           .merge(user_id: current_user.id)
-  end
-
-  def move_to_sign_in
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def set_item

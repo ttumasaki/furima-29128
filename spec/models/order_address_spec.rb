@@ -53,7 +53,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Phone number is invalid.Input half-width number')
       end
       it '電話番号が12桁以上だと保存できない' do
-        @order_address.phone_number = '0000000000000000'
+        @order_address.phone_number = '000000000000'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is invalid.Input half-width number')
       end
