@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
-  before_action :set_item, only: [:create]
+  before_action :set_item, only: [:index, :show]
   before_action :find_params, only: [:show, :edit, :update, :destroy]
 
 
   def index
-    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -13,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(items_params)
     if @item.save
       redirect_to root_path
     else
@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.new(items_params)
+    @items = Item.all.order('created_at DESC')
   end
 
   def find_params
