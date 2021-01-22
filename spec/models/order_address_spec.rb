@@ -80,6 +80,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture is not select.Select prefecture")
       end
+      it '電話番号が英数混合では保存できない' do
+        @order_address.phone_number = 'a111223333'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid.Input half-width number")
+      end
     end
   end
 end
