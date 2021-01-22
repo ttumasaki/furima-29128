@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:index, :show]
   before_action :find_params, only: [:show, :edit, :update, :destroy]
 
-
   def index
   end
 
