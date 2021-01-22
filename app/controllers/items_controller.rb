@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: [:new]
-  before_action :set_item, only: [:create]
+  before_action :authenticate_user!, except: [:index,:show]
+  before_action :set_item, only: [:index, :show]
   before_action :find_params, only: [:show, :edit, :update, :destroy]
 
+
   def index
-    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(items_params)
     if @item.save
       redirect_to root_path
     else
@@ -23,9 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @item.user_id
-      redirect_to root_path
-    end
+      redirect_to root_path if current_user.id != @item.user_id || @item.id != nil
   end
 
   def update
@@ -45,7 +44,7 @@ class ItemsController < ApplicationController
       end
     else
       render :index
-    end 
+    end
   end
 
   private
@@ -63,12 +62,8 @@ class ItemsController < ApplicationController
           .merge(user_id: current_user.id)
   end
 
-  def move_to_sign_in
-    redirect_to new_user_session_path unless user_signed_in?
-  end
-
   def set_item
-    @item = Item.new(items_params)
+    @items = Item.all.order('created_at DESC')
   end
 
   def find_params
