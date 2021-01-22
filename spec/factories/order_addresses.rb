@@ -7,8 +7,5 @@ FactoryBot.define do
     building_name { 'テストビル１階' }
     phone_number { Faker::Number.number(digits: 11) }
     token { Faker::String.random }
-    user_id { Faker::Number.within(range: 2..5) }
-    item_id { Faker::Number.within(range: 5..10) }
-
   end
 end
